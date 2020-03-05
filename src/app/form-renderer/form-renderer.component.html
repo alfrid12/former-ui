@@ -1,1 +1,8 @@
-<p>form-renderer works!</p>
+<h2 *ngIf="form">{{ form.formName }}</h2>
+
+
+<form *ngIf="form" [formGroup]="formGroup" (ngSubmit)="submit()">
+    <formly-form [form]="formGroup" [fields]="form.formFields" [model]="formModel"></formly-form>
+    <br><br>
+    <button type="submit" class="btn btn-default">Submit</button>
+</form>

@@ -12,12 +12,14 @@ import { AppComponent } from './app.component';
 import { MenubarModule } from 'primeng/menubar';
 import { FormRendererComponent } from './form-renderer/form-renderer.component';
 import { FormCreatorComponent } from './form-creator/form-creator.component';
+import { FormsViewerComponent } from './forms-viewer/forms-viewer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FormRendererComponent,
-    FormCreatorComponent
+    FormCreatorComponent,
+    FormsViewerComponent
   ],
   imports: [
     BrowserModule,

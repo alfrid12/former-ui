@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
     }, {
       label: 'Find a Form',
       icon: 'fa fa-table',
+      routerLink: '/forms'
     }, {
       label: 'Find a Form Submission',
       icon: 'fa fa-question'

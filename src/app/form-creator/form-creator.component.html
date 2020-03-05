@@ -1,11 +1,11 @@
 <h2>Create a New Form</h2>
 
-<form [formGroup]="mainFormFormGroup" (ngSubmit)="submit()">
+<form [formGroup]="mainFormFormGroup">
     <formly-form [form]="mainFormFormGroup" [fields]="mainFormFields" [model]="mainFormModel"></formly-form>
     <br><br>
     <button type="button" class="btn btn-default" (click)="addNewField()">Add Field</button>
     <br><br>
-    <button type="submit" class="btn btn-default">Submit</button>
+    
 </form>
 
 <form *ngFor="let addedField of addedFieldFields; let i = index" [formGroup]="addedFieldFormGroups[i]">
@@ -13,3 +13,5 @@
     </formly-form>
     <br><br>
 </form>
+
+<button type="button" class="btn btn-default" (click)="submit()">Submit</button>

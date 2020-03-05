@@ -1,0 +1,7 @@
+<h2>Forms</h2>
+<hr>
+<div *ngFor="let form of forms; let i = index" routerLink="{{'/forms/' + form.formId}}">
+    <p>Form ID: {{ form.formId }}</p>
+    <p>Form Name: {{ form.formName }}</p>
+    <hr>
+</div>

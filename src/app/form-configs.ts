@@ -51,8 +51,8 @@ export const fieldForm: FormlyFieldConfig[] = [{
         description: 'jkl;',
         required: true,
         options: [
-            { value: 'text', label: 'Text' },
-            { value: 'number', label: 'Number' },
+            { value: 'input', label: 'Text' },
+            //{ value: 'integer', label: 'Number' },
             { value: 'checkbox', label: 'Checkbox' },
             { value: 'radio', label: 'Radio' },
             { value: 'dropdown', label: 'Dropdown' },

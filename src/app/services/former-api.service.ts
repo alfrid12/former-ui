@@ -16,6 +16,11 @@ export class FormerApiService {
     return this.http.get<any>(this.prependBaseUrl('/forms/' + formId));
   }
 
+  // Change me eventually
+  getAllForms() {
+    return this.http.get<any>(this.prependBaseUrl('/collections/forms'));
+  }
+
   private prependBaseUrl(urlSuffix) {
     return 'http://localhost:3000' + urlSuffix;
   }
