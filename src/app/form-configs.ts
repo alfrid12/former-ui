@@ -52,7 +52,6 @@ export const fieldForm: FormlyFieldConfig[] = [{
         required: true,
         options: [
             { value: 'input', label: 'Text' },
-            //{ value: 'integer', label: 'Number' },
             { value: 'checkbox', label: 'Checkbox' },
             { value: 'radio', label: 'Radio' },
             { value: 'dropdown', label: 'Dropdown' },

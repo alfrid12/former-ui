@@ -1,5 +1,7 @@
 MVP:
-- Add support for dropdown, radio button, and checkbox
-- Add table view for showing all created forms
-- Pull form from backend and render in browser, test that submission posts to proper URL
-- Styling
+- Add support for dropdown and radio button
+- Add table view for showing all created forms (formId, formName, postUrl, and fieldIds)
+- Add submit button functionality to form renderer to post to given url
+- Add space between form fields in form renderer
+- Add functionality to form renderer submit button to save submissions in database
+    - In addition to posting to given url? Or only if given url is blank?

@@ -25,13 +25,15 @@ export class FormRendererComponent implements OnInit {
     const formId = this.route.snapshot.paramMap.get('formId');
     this.formerApiService.getFormByFormId(formId).subscribe(form => {
       this.form = form;
+      console.log('Form object:');
       console.log(form);
     }, console.log);
   }
 
 
   submit() {
-    console.log('Submitted');
+    console.log('Form model: ');
+    console.log(this.formModel);
   }
 
 }
