@@ -5,12 +5,28 @@
     <br><br>
     <button type="button" class="btn btn-default" (click)="addNewField()">Add Field</button>
     <br><br>
-    
 </form>
 
-<form *ngFor="let addedField of addedFields" [formGroup]="addedField.formGroup">
-    <formly-form [form]="addedField.formGroup" [fields]="addedField.formFields" [model]="addedField.model"></formly-form>
-    <br><br>
-</form>
+<div *ngFor="let addedField of addedFields">
+
+    <!-- The "main" form for each added field: fieldId, fieldLabel, fieldType -->
+    <form [formGroup]="addedField.formGroup">
+        <formly-form [form]="addedField.formGroup" [fields]="addedField.formFields" [model]="addedField.model"></formly-form>
+        <br><br>
+        <div *ngIf="addedField.model.fieldType === 'radio' || addedField.model.fieldType === 'select'">
+            <button class="btn btn-default" (click)="addNewOption(addedField)">Add Option</button>
+            <br>
+        </div>
+    </form>
+
+    <!-- Array of forms for each added option (radio buttons and dropdowns) -->
+    <div *ngFor="let option of addedField.addedOptions">
+        <form [formGroup]="option.formGroup">
+            <formly-form [form]="option.formGroup" [fields]="option.formFields" [model]="option.model"></formly-form>
+        </form>
+        <br>
+    </div>
+</div>
+
 
 <button class="btn btn-default" (click)="submit()">Submit</button>

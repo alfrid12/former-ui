@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 
-import { mainFormFields, fieldForm } from '../form-configs';
+import { mainFormFields, fieldFormFields, optionFormFields } from '../form-configs';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { FormerApiService } from '../services/former-api.service';
 
@@ -34,16 +34,28 @@ export class FormCreatorComponent implements OnInit {
   addNewField() {
 
     // Deep clone to avoid referencing issues
-    const newFieldFormFields: FormlyFieldConfig[] = fieldForm.map(field => ({ ...field }));
+    const newFieldFormFields: FormlyFieldConfig[] = fieldFormFields.map(field => ({ ...field }));
 
     // Add field configs, form group, and form model to array
     this.addedFields.push({
       formFields: newFieldFormFields,
       formGroup: new FormGroup({}),
+      model: {},
+      addedOptions: []
+    });
+  }
+
+  addNewOption(addedField) {
+    const newOptionFormFields: FormlyFieldConfig[] = optionFormFields.map(field => ({ ...field }));
+
+    addedField.addedOptions.push({
+      formFields: newOptionFormFields,
+      formGroup: new FormGroup({}),
       model: {}
     });
   }
 
+  // TODO: add parsing for radio/dropdown options
   submit() {
 
     // For each added field, convert from form model to formly field config
