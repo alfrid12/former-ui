@@ -8,10 +8,9 @@
     
 </form>
 
-<form *ngFor="let addedField of addedFieldFields; let i = index" [formGroup]="addedFieldFormGroups[i]">
-    <formly-form [form]="addedFieldFormGroups[i]" [fields]="addedFieldFields[i]" [model]="addedFieldModels[i]">
-    </formly-form>
+<form *ngFor="let addedField of addedFields" [formGroup]="addedField.formGroup">
+    <formly-form [form]="addedField.formGroup" [fields]="addedField.formFields" [model]="addedField.model"></formly-form>
     <br><br>
 </form>
 
-<button type="button" class="btn btn-default" (click)="submit()">Submit</button>
+<button class="btn btn-default" (click)="submit()">Submit</button>

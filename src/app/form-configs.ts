@@ -54,9 +54,13 @@ export const fieldForm: FormlyFieldConfig[] = [{
             { value: 'input', label: 'Text' },
             { value: 'checkbox', label: 'Checkbox' },
             { value: 'radio', label: 'Radio' },
-            { value: 'dropdown', label: 'Dropdown' },
+            { value: 'select', label: 'Dropdown' },
         ]
     }
 }];
+
+// export const optionFields: FormlyFieldConfig[] = [{
+//     key: ''
+// }];
 
 

@@ -21,44 +21,38 @@ export class FormCreatorComponent implements OnInit {
   mainFormFormGroup: FormGroup;
   mainFormModel: any;
 
-  // TODO: convert these three separate arrays into one array with three objects in each element
-  addedFieldFields: FormlyFieldConfig[][] = [];
-  addedFieldFormGroups: FormGroup[] = [];
-  addedFieldModels: any[] = [];
+  addedFields: any[];
 
   ngOnInit() {
     this.mainFormFields = mainFormFields;
     this.mainFormFormGroup = new FormGroup({});
-    this.mainFormModel = {
-      formName: '',
-      formId: ''
-    };
+    this.mainFormModel = {};
 
-    this.addedFieldFields = [];
-    this.addedFieldFormGroups = [];
-    this.addedFieldModels = [];
+    this.addedFields = [];
   }
 
   addNewField() {
 
-    // February 23, 2020: Alex Fridman deep clones an array of objects in one line
-    const newFieldForm: FormlyFieldConfig[] = fieldForm.map(field => ({ ...field }));
+    // Deep clone to avoid referencing issues
+    const newFieldFormFields: FormlyFieldConfig[] = fieldForm.map(field => ({ ...field }));
 
-    // Add field configs, form group, and form model to corresponding arrays
-    this.addedFieldFields.push(newFieldForm);
-    this.addedFieldFormGroups.push(new FormGroup({}));
-    this.addedFieldModels.push({});
+    // Add field configs, form group, and form model to array
+    this.addedFields.push({
+      formFields: newFieldFormFields,
+      formGroup: new FormGroup({}),
+      model: {}
+    });
   }
 
   submit() {
 
     // For each added field, convert from form model to formly field config
-    const consolidatedFormFields = this.addedFieldModels.map(model => {
+    const consolidatedFormFields = this.addedFields.map(field => {
       return {
-        key: model.fieldId,
-        type: model.fieldType,
+        key: field.model.fieldId,
+        type: field.model.fieldType,
         templateOptions: {
-          label: model.fieldLabel
+          label: field.model.fieldLabel
         }
       };
     });
