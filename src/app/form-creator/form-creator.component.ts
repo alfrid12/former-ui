@@ -16,17 +16,15 @@ export class FormCreatorComponent implements OnInit {
 
   constructor(private formerApiService: FormerApiService) { }
 
-  // TODO: move below three lines into one object with three elements
-  mainFormFields: FormlyFieldConfig[];
-  mainFormFormGroup: FormGroup;
-  mainFormModel: any;
-
+  mainForm: any;
   addedFields: any[];
 
   ngOnInit() {
-    this.mainFormFields = mainFormFields;
-    this.mainFormFormGroup = new FormGroup({});
-    this.mainFormModel = {};
+    this.mainForm = {
+      formFields: mainFormFields,
+      formGroup: new FormGroup({}),
+      model: {}
+    };
 
     this.addedFields = [];
   }
@@ -46,6 +44,8 @@ export class FormCreatorComponent implements OnInit {
   }
 
   addNewOption(addedField) {
+
+    // Deep clone to avoid referencing issues
     const newOptionFormFields: FormlyFieldConfig[] = optionFormFields.map(field => ({ ...field }));
 
     addedField.addedOptions.push({
@@ -55,25 +55,37 @@ export class FormCreatorComponent implements OnInit {
     });
   }
 
-  // TODO: add parsing for radio/dropdown options
+
   submit() {
 
     // For each added field, convert from form model to formly field config
     const consolidatedFormFields = this.addedFields.map(field => {
-      return {
+
+      // Create FormlyFieldConfig from form model for field
+      const fieldConfig: FormlyFieldConfig = {
         key: field.model.fieldId,
         type: field.model.fieldType,
         templateOptions: {
           label: field.model.fieldLabel
         }
       };
+
+      // If field is radio or select, put options inside of templateOptions.options
+      if (field.model.fieldType === 'radio' || field.model.fieldType === 'select') {
+        fieldConfig.templateOptions.options = field.addedOptions.map(option => ({
+          value: option.model.optionValue,
+          label: option.model.optionLabel
+        }));
+      }
+
+      return fieldConfig;
     });
 
     // Combine form attributes and form fields into one object
     const newForm = {
-      formId: this.mainFormModel.formId,
-      formName: this.mainFormModel.formName,
-      formSubmissionUrl: this.mainFormModel.formSubmissionUrl,
+      formId: this.mainForm.model.formId,
+      formName: this.mainForm.model.formName,
+      formSubmissionUrl: this.mainForm.model.formSubmissionUrl,
       formFields: consolidatedFormFields
     };
 

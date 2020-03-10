@@ -1,19 +1,14 @@
 MVP:
+- Add space between form fields in form renderer
+- Create Angular Element that retrieves and renders form config
+- Host Element in S3
 - Add table view for showing all created forms (formId, formName, postUrl, and fieldIds)
 - Add submit button functionality to form renderer to post to given url
-- Add space between form fields in form renderer
+
+
+
+Post-MVP:
+- Ability to remove radio/dropdown options in form creator
 - Add functionality to form renderer submit button to save submissions in database
     - In addition to posting to given url? Or only if given url is blank?
-- Add support for dropdown and radio button
-    - Requirements:
-        - Each dropdown/radio button needs to have two to many options
-        - User needs to be able to add and remove options
-    - Implementation:
-        - Conditionally add "Add option" button if dropdown or radio button
-        - Can't simply add new fields to current fieldForm because each field needs a unique key --> need an array of forms
-        - Should probably be an array of forms, for submission parsing
-            - Each field form would have an associated array of option field forms
-
-
-
 
